@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
 import java.util.Date;
@@ -32,6 +33,11 @@ public class VehicleController {
     @QueryMapping
     public Optional<Vehicle> getVehicle(@Argument("id") Long id) {
         return vehicleRepository.findById(Long.valueOf(id));
+    }
+
+    @SchemaMapping(typeName = "Query",field = "getVehiclesNew")
+    public List<Vehicle>  getVehicleWithBrandName(@Argument("type") String brandName) {
+        return vehicleRepository.getByBrandNameLike(brandName);
     }
 
     @MutationMapping

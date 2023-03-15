@@ -16,6 +16,7 @@ type Query {
     getVehicles(type: String):[Vehicle]
     getVehicle(id: Int):Vehicle
     getAllVehicles:[Vehicle]
+    getVehiclesNew(type: String):[Vehicle]
 }
 
 type Mutation {
